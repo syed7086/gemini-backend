@@ -1,5 +1,6 @@
 import os
 import json
+import uvicorn
 import re
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -75,6 +76,6 @@ async def predict_diagnosis(data: SymptomsInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-    if __name__ == "__main__":
-        port = int(os.environ.get("PORT", 8000))  # Use Render's assigned port
-        uvicorn.run(app, host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Use Render's assigned port
+    uvicorn.run(app, host="0.0.0.0", port=port)
